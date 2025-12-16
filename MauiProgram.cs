@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
+using DavidAppCrud.DataAcess;
 namespace DavidAppCrud;
 
 public static class MauiProgram
@@ -14,6 +15,10 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+
+		var dbContext = new EmpleadoDbContext();
+		dbContext.Database.EnsureCreated();
+		dbContext.Dispose();
 
 #if DEBUG
 		builder.Logging.AddDebug();

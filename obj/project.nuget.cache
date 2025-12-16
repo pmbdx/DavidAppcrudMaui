@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "uAuwr5jVjwI=",
+  "dgSpecHash": "9hXRTZA/V8w=",
   "success": true,
   "projectFilePath": "C:\\Users\\dem29\\source\\repos\\DavidAppCrud\\DavidAppCrud\\DavidAppCrud.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\dem29\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.1\\communitytoolkit.mvvm.8.2.1.nupkg.sha512",
     "C:\\Users\\dem29\\.nuget\\packages\\googlegson\\2.11.0.3\\googlegson.2.11.0.3.nupkg.sha512",
     "C:\\Users\\dem29\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.11\\microsoft.data.sqlite.core.9.0.11.nupkg.sha512",
     "C:\\Users\\dem29\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.11\\microsoft.entityframeworkcore.9.0.11.nupkg.sha512",

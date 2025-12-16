@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.ComponentModel.DataAnnotations;
 namespace DavidAppCrud.Modelos
 {
-    class Empleado
+    public class Empleado
     {
+        [Key]
+        public int idEmpleado { get; set; }
+        public string NombreCompleto { get; set; }
+
+        public string Correo { get; set; }
+
+        public decimal Sueldo { get; set; }
+
+        public DateTime FechaContrato { get; set; }
+
     }
 }
