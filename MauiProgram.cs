@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 
 using DavidAppCrud.DataAcess;
+using DavidAppCrud.ViewModels;
+using DavidAppCrud.Views;
+
 namespace DavidAppCrud;
 
 public static class MauiProgram
@@ -19,7 +22,15 @@ public static class MauiProgram
 		var dbContext = new EmpleadoDbContext();
 		dbContext.Database.EnsureCreated();
 		dbContext.Dispose();
+		builder.Services.AddDbContext<EmpleadoDbContext>();
 
+		builder.Services.AddTransient<EmpleadoPage>();
+		builder.Services.AddTransient<EmpleadoViewModel>();
+
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<MainViewModel>();
+
+		Routing.RegisterRoute(nameof(EmpleadoPage),typeof(EmpleadoPage));
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

@@ -7,7 +7,6 @@ using DavidAppCrud.DataAcess;
 using DavidAppCrud.DTOs;
 using DavidAppCrud.Utilidades;
 using DavidAppCrud.Modelos;
-using System.Threading.Tasks;
 
 namespace DavidAppCrud.ViewModels
 {
@@ -31,7 +30,7 @@ namespace DavidAppCrud.ViewModels
         }
         public async Task ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            var id = query["id"].ToString();
+            var id = int.Parse(query["id"].ToString());
             idEmpleado = id;
 
             if (idEmpleado == 0)
@@ -79,14 +78,40 @@ namespace DavidAppCrud.ViewModels
                         await _dbContext.SaveChangesAsync();
 
                         EmpleadoDto.idEmpleado = tbEmpleado.idEmpleado;
-                        mensaje = new EmpleadoMensaje
+                        mensaje = new EmpleadoMensaje()
                         {
                             EsCrear = true,
                             EmpleadoDto = EmpleadoDto
-                        }
+                        };
                     }
+                    else
+                    {
+                        var encontrado = await _dbContext.Empleados.FirstAsync(e => e.idEmpleado == idEmpleado);
+                        encontrado.NombreCompleto = EmpleadoDto.NombreCompleto;
+                        encontrado.Correo = EmpleadoDto.Correo;
+                        encontrado.Sueldo = EmpleadoDto.Sueldo;
+                        encontrado.FechaContrato = EmpleadoDto.FechaContrato;
+                        await _dbContext.SaveChangesAsync();
+
+                        mensaje = new EmpleadoMensaje()
+                        {
+                            EsCrear = true,
+                            EmpleadoDto = EmpleadoDto
+                        };
+                    }
+                    MainThread.BeginInvokeOnMainThread(async () =>
+                    {
+                        LoadingEsVisible = false;
+                        WeakReferenceMessenger.Default.Send(new EmpleadoMensajeria(mensaje));
+                        await Shell.Current.Navigation.PopAsync();
+                    });
                 });
             }
+        }
+
+        void IQueryAttributable.ApplyQueryAttributes(IDictionary<string, object> query)
+        {
+            throw new NotImplementedException();
         }
     }
 }

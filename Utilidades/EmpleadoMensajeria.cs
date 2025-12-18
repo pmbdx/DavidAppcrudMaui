@@ -4,7 +4,7 @@ namespace DavidAppCrud.Utilidades
 {
     public class EmpleadoMensajeria : ValueChangedMessage<EmpleadoMensaje>
     {
-        public EmpleadoMensaje(EmpleadoMensaje value):base(value)
+        public EmpleadoMensajeria(EmpleadoMensaje value):base(value)
         {
 
         }
